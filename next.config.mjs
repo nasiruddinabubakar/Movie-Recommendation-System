@@ -11,7 +11,11 @@ const nextConfig = {
         hostname: "i.ibb.co",
       },
     ],
+    domains: ['m.media-amazon.com'],
   },
 };
+
+
+
 
 export default nextConfig;

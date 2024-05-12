@@ -1,3 +1,4 @@
+
 import MovieContainer from "@/components/MovieContainer";
 import VideoPlayer from "@/components/VideoPlayer";
 import { getImagePath } from "@/lib/getImagePath";
@@ -8,39 +9,25 @@ import {
 } from "@/lib/getMovies";
 import { Metadata } from "next";
 import Image from "next/image";
+import { useRouter } from 'next/router';
 import React from "react";
+import jsonData from '@/data.json'
 
-export const metadata: Metadata = {
-  title: "Movie Studio Clone || Movie Details page",
-};
+
 
 interface Props {
   params: {
-    id: string;
+    name: string;
   };
 }
 
-const MovieDetails = async ({ params: { id } }: Props) => {
-  const movies = await getMovieVideos(id);
-  const videos = movies.map((movie: any) => ({
-    id: movie.id,
-    iso_639_1: movie.iso_639_1,
-    iso_3166_1: movie.iso_3166_1,
-    key: movie.key,
-    name: movie.name,
-    official: movie.official,
-    published_at: movie.published_at,
-    site: movie.site,
-    size: movie.size,
-    type: movie.type,
-  }));
-  const details: any = await getMovieDetails(id);
-  const popoularMovies = await getPopularMovies();
-
+const MovieDetails = async ({ params:id}: Props) => {
+  console.log(id);
+ 
   return (
     <div>
       <div className="px-10">
-        <div className="py-10 flex flex-col lg:flex-row items-center gap-5">
+        {/* <div className="py-10 flex flex-col lg:flex-row items-center gap-5">
           <div className="w-full lg:w-1/2 min-h-96 rounded-md overflow-hidden group">
             <Image
               src={getImagePath(details?.backdrop_path)}
@@ -101,15 +88,9 @@ const MovieDetails = async ({ params: { id } }: Props) => {
             </p>
           </div>
         </div>
-        <VideoPlayer videos={videos} />
+        */}
       </div>
-      <div className="mt-6">
-        <MovieContainer
-          movies={popoularMovies}
-          title="Popular Movies"
-          isVertical
-        />
-      </div>
+     
     </div>
   );
 };

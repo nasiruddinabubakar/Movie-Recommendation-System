@@ -77,3 +77,4 @@ export const getMovieDetails = async (id?: string) => {
   const data = await fetcher(url);
   return data;
 };
+

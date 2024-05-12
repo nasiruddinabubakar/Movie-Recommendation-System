@@ -5,24 +5,38 @@ import {
   getTopRatedMovies,
   getUpcomingMovies,
 } from "@/lib/getMovies";
-
+import jsonData from '@/data.json'
 interface Props {
   searchParams: {
     title: string;
   };
 }
 
+
 const ViewMorePage = async ({ searchParams: { title } }: Props) => {
   let movies: any = null;
+  const modifiedData = jsonData.map(movie => {
+  
+    if (movie.Poster_Link && typeof movie.Poster_Link === 'string') {
+      
+        const index = movie.Poster_Link.indexOf('_V');
+        
+        if (index !== -1) {
+            movie.Poster_Link = movie.Poster_Link.substring(0, index) + '.jpg';
+        }
+    }
+    
+    return movie;
+  });
 
-  if (title === "Now Playing") {
+  if (title === "Recommended For You") {
     movies = await getNowPlayingMovies();
-  } else if (title === "Upcoming") {
-    movies = await getUpcomingMovies();
+  } else if (title === "Classics") {
+    movies = modifiedData.filter((movie) => movie.Genre === "Comedy");
   } else if (title === "Top Rated") {
-    movies = await getTopRatedMovies();
-  } else if (title === "Popular") {
-    movies = await getPopularMovies();
+    movies = modifiedData.slice(5,10);
+  } else if (title === "Drama") {
+    movies =  modifiedData.filter((movie) => movie.Genre === "Drama");
   }
 
   return (

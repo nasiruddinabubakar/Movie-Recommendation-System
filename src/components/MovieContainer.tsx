@@ -1,15 +1,18 @@
+'use client'
 import Link from "next/link";
 import { Movie } from "../../type";
 import MovieCard from "./MovieCard";
 import { cn } from "@/lib/utils";
+import jsonData from "../data.json";
 
 type Props = {
   title?: string;
-  movies: Movie[];
-  isVertical?: boolean;
+  movies?:any[]
+  isVertical?: boolean,
 };
 
 const MovieContainer = ({ title, movies, isVertical }: Props) => {
+ 
   return (
     <div>
       <div className="mx-10 py-2 flex items-center justify-between border-b border-b-gray-500 relative mb-4">
@@ -29,9 +32,9 @@ const MovieContainer = ({ title, movies, isVertical }: Props) => {
         )}
       >
         {isVertical
-          ? movies?.map((movie) => (
+          ? movies?.map((movie,index) => (
               <div
-                key={movie.id}
+                key={index}
                 className={cn(
                   isVertical &&
                     "flex flex-col space-y-5 mb-5 items-center lg:flex-row space-x-5"
@@ -40,14 +43,14 @@ const MovieContainer = ({ title, movies, isVertical }: Props) => {
                 <MovieCard movie={movie} />
                 <div className="max-w-2xl">
                   <p className="font-bold">
-                    {movie?.title} ({movie?.release_date?.split("-")[0]})
+                    {movie?.Series_Title} 
                   </p>
                   <hr className="mb-3" />
-                  <p>{movie?.overview}</p>
+                  <p>{movie?.Overview}</p>
                 </div>
               </div>
             ))
-          : movies.map((movie) => <MovieCard key={movie?.id} movie={movie} />)}
+          : movies?.map((movie,index) => <MovieCard key={index} movie={movie} />)}
       </div>
     </div>
   );

@@ -3,13 +3,14 @@ import HeroCarousel from "./HeroCarousel";
 
 interface Props {
   id?: string;
+  movies?: any[];
   keywords?: string;
 }
 
-const CaroselBanner = async ({ id, keywords }: Props) => {
-  const movies = await getDiscoverMovies(id, keywords);
+const CaroselBanner = async ({ id, movies, keywords }: Props) => {
+  // const movies = await getDiscoverMovies(id, keywords);
 
-  return <HeroCarousel movies={movies} />;
+  return <HeroCarousel movies={movies}/>;
 };
 
 export default CaroselBanner;
