@@ -1,9 +1,8 @@
 import MovieContainer from "@/components/MovieContainer";
 import {
-  getNowPlayingMovies,
-  getPopularMovies,
-  getTopRatedMovies,
-  getUpcomingMovies,
+  fetcher,
+  getRecommendedMovies,
+ 
 } from "@/lib/getMovies";
 import jsonData from '@/data.json'
 interface Props {
@@ -30,7 +29,10 @@ const ViewMorePage = async ({ searchParams: { title } }: Props) => {
   });
 
   if (title === "Recommended For You") {
-    movies = await getNowPlayingMovies();
+    movies = await getRecommendedMovies();
+    console.log(movies);
+    const moviesNew = modifiedData.filter((movie) => movies?.includes(movie.Series_Title));
+    movies = moviesNew;
   } else if (title === "Classics") {
     movies = modifiedData.filter((movie) => movie.Genre === "Comedy");
   } else if (title === "Top Rated") {

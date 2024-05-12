@@ -1,9 +1,11 @@
-"use client";
-import { Movie } from "../../type";
-import Image from "next/image";
-import { getImagePath } from "@/lib/getImagePath";
-import { useRouter } from "next/navigation";
-import { Metadata } from "next";
+'use client';
+import { Movie } from '../../type';
+import Image from 'next/image';
+import { getImagePath } from '@/lib/getImagePath';
+import { useRouter } from 'next/navigation';
+import { Metadata } from 'next';
+import { Button } from './ui/button';
+import { Video } from 'lucide-react';
 
 const MovieCard = ({ movie }: { movie: any }) => {
   const router = useRouter();
@@ -24,6 +26,7 @@ const MovieCard = ({ movie }: { movie: any }) => {
         height={1080}
         className="w-fit lg:min-w-[400px] h-56 object-contain shadow-md bg-black shadow-gray-900 drop-shadow-xl"
       />
+      
     </div>
   );
 };
