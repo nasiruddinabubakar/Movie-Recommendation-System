@@ -1,4 +1,4 @@
-import { getDiscoverMovies } from "@/lib/getMovies";
+
 import HeroCarousel from "./HeroCarousel";
 
 interface Props {

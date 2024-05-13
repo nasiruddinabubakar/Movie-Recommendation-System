@@ -37,8 +37,8 @@ const ViewMorePage = async ({ searchParams: { title } }: Props) => {
     movies = modifiedData.filter((movie) => movie.Genre === "Comedy");
   } else if (title === "Top Rated") {
     movies = modifiedData.slice(5,10);
-  } else if (title === "Drama") {
-    movies =  modifiedData.filter((movie) => movie.Genre === "Drama");
+  } else if (title === "Action") {
+    movies =  modifiedData.filter((movie) => movie.Genre === "Action");
   }
 
   return (

@@ -33,7 +33,7 @@ export const getRecommendedMovies = async () => {
         user_id: 'asgasasdasdasdasda',
       }),
       next: {
-        revalidate:1,
+        revalidate:0,
       },
   });
   console.log("hello 123");
